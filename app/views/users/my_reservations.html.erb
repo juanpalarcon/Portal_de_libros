@@ -1,14 +1,12 @@
 <h1>Mis reservas</h1>
-
+<ul>
 
 <% @reservations.each do |res|  %>
 
-<ul>
-    <li>
+
+    <li class='list' id="reservation_<% res.id%>" >
     <%= res.book.name %>
+    <%= link_to 'Unreserve', reservation_path(res.id), method: :delete,  data: { confirm: 'Are you sure?' }, remote: :true%>
     </li>
-</ul>
-
-
 <% end %>
-
+</ul>
