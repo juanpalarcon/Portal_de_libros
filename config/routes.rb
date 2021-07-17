@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :sales
   resources :reservations
-  resources :books
+  resources :books do
+    member do
+      post 'reserve', to:'books#reserve'
+    end
+  end 
   devise_for :users
 
   get 'my_reservations', to: 'users#my_reservations'

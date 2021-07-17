@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[ show edit update destroy ]
+  before_action :set_book, only: %i[ show edit update destroy reserve]
+  before_action :authenticate_user!, only: [:reserve]
 
   # GET /books or /books.json
   def index
@@ -60,7 +61,7 @@ class BooksController < ApplicationController
 
   def reserve 
     reservations = Reservation.new(book: @book, user: current_user)
-    if reservation.save!
+    if reservations.save!
       @msg = 'Successfully reserved!'
     else  
       @msg = 'Successfully reserved!'
