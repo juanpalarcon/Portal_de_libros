@@ -1,3 +1,8 @@
+<div class= 'field'>
+<span> This form will block in</span>
+<span id="timer"></span>
+</div>
+
 <%= form_with(model: sale, local: true) do |form| %>
   <% if sale.errors.any? %>
     <div id="error_explanation">
@@ -13,15 +18,11 @@
 
   <div class="field">
     <%= form.label :payment_method %>
-    <%= form.number_field :payment_method %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reservation_id %>
-    <%= form.text_field :reservation_id %>
+    <%= form.select :payment_method, Sale.payment_methods.keys.to_a %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Pay Now' %>
+    <%= form.hidden_field :reservation_id, value: reservation.id%>
   </div>
 <% end %>

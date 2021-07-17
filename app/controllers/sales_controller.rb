@@ -13,6 +13,10 @@ class SalesController < ApplicationController
   # GET /sales/new
   def new
     @sale = Sale.new
+    @reservation = Reservation.find(params[:reservation_id])
+    respond_to do |format|
+      format.js { render 'new', layout: false }
+    end 
   end
 
   # GET /sales/1/edit
@@ -22,7 +26,6 @@ class SalesController < ApplicationController
   # POST /sales or /sales.json
   def create
     @sale = Sale.new(sale_params)
-
     respond_to do |format|
       if @sale.save
         format.html { redirect_to @sale, notice: "Sale was successfully created." }

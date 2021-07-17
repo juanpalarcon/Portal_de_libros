@@ -27,6 +27,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Solicitar libro', data: { disable_with: 'En proceso...' } %>
   </div>
 <% end %>

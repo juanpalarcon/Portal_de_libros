@@ -1,12 +1,28 @@
-<h1>Mis reservas</h1>
+<div class="modal" id="purchase_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Comprar Libro</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal_body">
+        <p>Modal body text goes here.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<h1>Mis Reservas</h1>
 <ul>
-
-<% @reservations.each do |res|  %>
-
-
-    <li class='list' id="reservation_<% res.id%>" >
+<% @reservations.each do |res|%>
+  <li class="list" id="reservation_<%=res.id%>" >
     <%= res.book.name %>
-    <%= link_to 'Unreserve', reservation_path(res.id), method: :delete,  data: { confirm: 'Are you sure?' }, remote: :true%>
-    </li>
-<% end %>
+    <%= link_to 'Purchase', new_sale_path(reservation_id: res.id), remote: true%>
+    <%= link_to 'Unreserve', reservation_path(res.id), method: :delete, data: { confirm: 'Are you sure?' }, remote: true%>
+  </li>
+<%end%>
 </ul>
